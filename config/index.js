@@ -10,12 +10,22 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
+    // example
+    // proxyTable: {
+    //   '/test': {
+    //     target: 'http://192.168.200.154/test',
+    //     changeOrigin: true,
+    //     pathRewrite: {
+    //       '^/test': ''
+    //     }
+    //   }
+    // }
     proxyTable: {
-      '/template': {
-        target: 'http://localhost:9090',
+      '/test': {
+        target: 'http://192.168.200.154/test',
         changeOrigin: true,
         pathRewrite: {
-          '^/template': ''
+          '^/test': ''
         }
       }
     },

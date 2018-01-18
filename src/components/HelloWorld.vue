@@ -87,6 +87,10 @@
 export default {
   name: 'HelloWorld',
   mounted () {
+    this.$http.get('http://localhost:8080/test/json')
+      .then((response) => {
+        console.log(response.data)
+      })
   },
   data () {
     return {
