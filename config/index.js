@@ -21,11 +21,11 @@ module.exports = {
     //   }
     // }
     proxyTable: {
-      '/test': {
-        target: 'http://192.168.200.154/test',
+      '/readygo': {
+        target: 'http://192.168.1.51:9090/readygo',
         changeOrigin: true,
         pathRewrite: {
-          '^/test': ''
+          '^/readygo': ''
         }
       }
     },

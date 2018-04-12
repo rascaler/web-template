@@ -6,7 +6,17 @@
     <title>web-template</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app" ></div>
     <!-- built files will be auto injected -->
   </body>
+<style>
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+.app {
+  flex: 1; /* 1 代表盡可能最大，會自動填滿除了 header footer 以外的空間 */
+}
+</style>
 </html>
