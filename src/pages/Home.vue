@@ -104,7 +104,6 @@
         name: 'App',
         mounted () {
             this.layoutHeight = document.body.clientHeight - 60 - 75
-            // alert(window.innerHeight)
         },
         data () {
             return {

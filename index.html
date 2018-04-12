@@ -10,13 +10,25 @@
     <!-- built files will be auto injected -->
   </body>
 <style>
-body{
+/* body{
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 .app {
-  flex: 1; /* 1 代表盡可能最大，會自動填滿除了 header footer 以外的空間 */
+  flex: 1;
+} */
+
+html {
+  height: 100%;
+  width: 100%;
+  display: table;
+}
+
+body {
+  display: table-cell;
+  height: 100%;
+  width: 100%;
 }
 </style>
 </html>
