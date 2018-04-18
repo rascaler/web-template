@@ -22,7 +22,7 @@ module.exports = {
     // }
     proxyTable: {
       '/readygo': {
-        target: 'http://192.168.1.51:9090/readygo',
+        target: 'http://192.168.199.113:9090/readygo',
         changeOrigin: true,
         pathRewrite: {
           '^/readygo': ''
@@ -31,7 +31,7 @@ module.exports = {
     },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: '0.0.0.0', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,

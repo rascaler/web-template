@@ -10,9 +10,13 @@ import CONSTANT from './commons/constant'
 import ResponseCode from './commons/ResponseCode'
 import iView from 'iview'
 import 'iview/dist/styles/iview.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 import moment from 'moment'
+import 'font-awesome/css/font-awesome.css'
 
 Vue.use(iView)
+Vue.use(ElementUI)
 Vue.config.productionTip = false
 Vue.prototype.$http = axios
 Vue.prototype.$qs = qs
@@ -23,10 +27,10 @@ Vue.filter('yyyy_MM_dd', function (value) {
    return moment(value).format('YYYY-MM-DD')
 })
 
-buildUrl('http://192.168.1.51:8081/movie/', ApiUrl)
+buildUrl('http://192.168.199.113:8081/readygo/', ApiUrl)
 window.CONSTANT = CONSTANT
 CONSTANT.API_URL = ApiUrl
-CONSTANT.API_URL.ORIGIN = 'http://192.168.1.51:8081/movie/'
+CONSTANT.API_URL.ORIGIN = 'http://192.168.199.113:8081/readygo/'
 CONSTANT.ResponseCode = ResponseCode
 /* eslint-disable no-new */
 new Vue({

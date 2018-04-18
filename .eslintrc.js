@@ -29,6 +29,10 @@ module.exports = {
     'no-tabs': 'off',
     'no-trailing-spaces': 'off',
     "vue/no-parsing-error": [2, { "x-invalid-end-tag": false }],
-    "vue/html-self-closing": "off"
+    "vue/html-self-closing": "off",
+    "no-mixed-spaces-and-tabs": "off"
+  },
+  globals: {
+    CONSTANT: true
   }
 }
