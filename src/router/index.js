@@ -2,9 +2,11 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
 import Home from '@/pages/Home'
-import Test from '@/pages/Test'
-import eltest from '@/test/eltest'
-import ellayout1 from '@/test/ElLayout1'
+// import Test from '@/test/Test'
+// import eltest from '@/test/eltest'
+import ellayout2 from '@/test/ElLayout2'
+import gridLayoutTest from '@/test/gridLayoutTest'
+import tableTest from '@/test/TableTest'
 
 Vue.use(Router)
 
@@ -17,20 +19,19 @@ export default new Router({
     }, {
       path: '/Home',
       name: 'Home',
-      component: Home,
-      children: [{
-        path: '/Test',
-        name: 'Test',
-        component: Test
-      }]
+      component: Home
     }, {
-      path: '/eltest',
-      name: 'eltest',
-      component: eltest
+      path: '/ellayout2',
+      name: 'ellayout2',
+      component: ellayout2
     }, {
-      path: '/ellayout1',
-      name: 'ellayout1',
-      component: ellayout1
+      path: '/gridLayoutTest',
+      name: 'gridLayoutTest',
+      component: gridLayoutTest
+    }, {
+      path: '/tableTest',
+      name: 'tableTest',
+      component: tableTest
     }
   ]
 })

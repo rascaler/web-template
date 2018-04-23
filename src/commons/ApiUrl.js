@@ -1,4 +1,5 @@
 const API_URL = {
+  ORIGIN: 'http://192.168.1.51:8081/readygo/',
   SCHEMA: {
     SAVE: 'schema/save'
   },
@@ -12,4 +13,5 @@ const API_URL = {
     GET_SIMPLE_ALL: 'dataSource/getSimpleAll'
   }
 }
+
 export default API_URL

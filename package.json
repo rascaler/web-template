@@ -21,6 +21,7 @@
     "moment": "^2.22.0",
     "qs": "^6.5.1",
     "vue": "^2.5.2",
+    "vue-grid-layout": "^2.1.11",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

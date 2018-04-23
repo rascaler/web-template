@@ -23,11 +23,26 @@
       <el-container :style="{height: contentHeight + 'px'}">
         <el-aside width="200px" style="line-height:0px;">
           <el-row>
-            <el-button-group>
-              <el-button type="primary" icon="el-icon-edit"></el-button>
-              <el-button type="primary" icon="el-icon-share"></el-button>
-              <el-button type="primary" icon="el-icon-delete"></el-button>
-            </el-button-group>
+                <el-dropdown trigger="click" placement="bottom-start">
+                  <el-button icon="el-icon-edit"></el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>黄金糕</el-dropdown-item>
+                  <el-dropdown-item>狮子头</el-dropdown-item>
+                  <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                  <el-dropdown-item>双皮奶</el-dropdown-item>
+                  <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
+              <el-dropdown trigger="click" placement="bottom-start">
+                  <el-button icon="el-icon-edit"></el-button>
+                <el-dropdown-menu slot="dropdown">
+                  <el-dropdown-item>黄金糕</el-dropdown-item>
+                  <el-dropdown-item>狮子头</el-dropdown-item>
+                  <el-dropdown-item>螺蛳粉</el-dropdown-item>
+                  <el-dropdown-item>双皮奶</el-dropdown-item>
+                  <el-dropdown-item>蚵仔煎</el-dropdown-item>
+                </el-dropdown-menu>
+              </el-dropdown>
           </el-row>
         </el-aside>
         <el-container>

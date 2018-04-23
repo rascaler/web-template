@@ -4,25 +4,16 @@
 
 const path = require('path')
 
+
 module.exports = {
   dev: {
 
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    // example
-    // proxyTable: {
-    //   '/test': {
-    //     target: 'http://192.168.200.154/test',
-    //     changeOrigin: true,
-    //     pathRewrite: {
-    //       '^/test': ''
-    //     }
-    //   }
-    // }
     proxyTable: {
       '/readygo': {
-        target: 'http://192.168.199.113:9090/readygo',
+        target: 'http://192.168.1.51:9090/readygo',
         changeOrigin: true,
         pathRewrite: {
           '^/readygo': ''
@@ -32,7 +23,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: '0.0.0.0', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8081, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
