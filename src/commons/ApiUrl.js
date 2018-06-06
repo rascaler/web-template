@@ -1,5 +1,5 @@
 const API_URL = {
-  ORIGIN: 'http://192.168.1.51:8081/readygo/',
+  ORIGIN: 'http://192.168.199.113:8081/readygo/',
   SCHEMA: {
     SAVE: 'schema/save'
   },
@@ -11,6 +11,10 @@ const API_URL = {
   DATA_SOURCE: {
     GET_DATA_SOURCE_TREE: 'dataSource/getDataSourceTree',
     GET_SIMPLE_ALL: 'dataSource/getSimpleAll'
+  },
+  GENERATOR: {
+    NUMBER: 'generator/number',
+    SAVE: 'generator/save'
   }
 }
 

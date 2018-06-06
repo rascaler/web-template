@@ -1,9 +1,9 @@
 <template>
-  <div id="home">
+  <div id="ElLayout1">
     <el-container>
       <el-header style="padding:0px;">
         <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect">
-          <el-menu-item index="1">数据工厂</el-menu-item>
+          <el-menu-item index="1">处理中心</el-menu-item>
           <el-submenu index="2">
             <template slot="title">我的工作台</template>
             <el-menu-item index="2-1">选项1</el-menu-item>
@@ -21,79 +21,72 @@
         </el-menu>
       </el-header>
       <el-container :style="{height: contentHeight + 'px'}">
-        <el-aside width="250px" style="line-height:0px;">
-          <el-row type="flex">
-              <el-dropdown trigger="click" placement="bottom-start">
-                  <el-button icon="el-icon- fa fa-plus" size="mini"></el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>Oracle</el-dropdown-item>
-                  <el-dropdown-item>MySql</el-dropdown-item>
-                  <el-dropdown-item>SQL Server</el-dropdown-item>
-                  <el-dropdown-item>DB2</el-dropdown-item>
-                  <el-dropdown-item>PostgreSQL</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-              <el-dropdown trigger="click" placement="bottom-start">
-                <el-button icon="el-icon- fa fa-exchange" size="mini"></el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item v-for="dataSource in dataSourceList" :key="dataSource.id" @click.native="getDataSourceTree(dataSource.id)">
-                    {{dataSource.name}}
-                  </el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-              <el-dropdown trigger="click" placement="bottom-start">
-                  <el-button icon="el-icon- fa fa-cogs" size="mini"></el-button>
-                <el-dropdown-menu slot="dropdown">
-                  <el-dropdown-item>导出model</el-dropdown-item>
-                </el-dropdown-menu>
-              </el-dropdown>
-              <el-button icon="el-icon- fa fa-refresh" size="mini"></el-button>
-          </el-row>
-          <el-row type="flex">
-              <el-tree
-                :data="dsTreeConfig.data"
-                node-key="uid"
-                default-expand-all
-                highlight-current
-                @node-click="handleNodeClick"
-                :expand-on-click-node="false" style="flex:1" ref="dsTree">
-                <span class="custom-tree-node" slot-scope="{ node, data }">
-                    <span>
-                      <i v-if="data.type === 0" class="el-icon- fa fa-database"></i>
-                      <i v-if="data.type === 1" class="el-icon- fa fa-database"></i>
-                      <i v-if="data.type === 2" class="el-icon- fa fa-table"></i>
-                      {{ node.label }}
-                    </span>
-                    <span style="margin-left:10px;">
-                        <el-dropdown trigger="click" placement="bottom-start">
-                          <el-button type="text" size="mini" icon="el-icon- fa fa-cog" @click="() => append(data)"></el-button>
-                          <el-dropdown-menu slot="dropdown">
-                            <el-dropdown-item>导出model</el-dropdown-item>
-                          </el-dropdown-menu>
-                        </el-dropdown>
-                    </span>
-                </span>
-                </el-tree>
-          </el-row>
-        </el-aside>
-        <el-container>
-          <el-main>
-             <el-row>
-              <el-table :data="fieldTableConfig.data" stripe border @row-dblclick="rowDoubleClick" @expand-change="getGeneratorConfig">
-                <el-table-column label="生成器" prop="comment" width="200" align="center">
-                  <el-table-column label="配置" prop="comment" type="expand" width="80"></el-table-column>
-                  <el-table-column label="类型" prop="name" width="120" align="center"></el-table-column>
-                </el-table-column>
-                <el-table-column prop="name" label="字段名" width="120" align="center"></el-table-column>
-                <el-table-column prop="dataType" label="类型" width="100" align="center"></el-table-column>
-                <el-table-column prop="length" label="长度" width="100" align="center"></el-table-column>
-                <el-table-column prop="isNullable" label="是否为空" width="100" align="center"></el-table-column>
-                <el-table-column prop="fieldDefault" label="默认值" width="180" align="center"></el-table-column>
-                <el-table-column prop="comment" label="注释" align="center"></el-table-column>
-              </el-table> 
-             </el-row>
-          </el-main>
-          <el-footer>Footer</el-footer>
+        <!-- 左侧菜单栏 -->
+        <el-menu :collapse="true">
+          <el-menu-item index="2" @click="toggleTabs('0')">
+            <i class="el-icon-menu"></i>
+            <span slot="title">导航二</span>
+          </el-menu-item>
+          <el-menu-item index="3">
+            <i class="el-icon-document"></i>
+            <span slot="title">导航三</span>
+          </el-menu-item>
+          <el-menu-item index="4">
+            <i class="el-icon-setting"></i>
+            <span slot="title">导航四</span>
+          </el-menu-item>
+        </el-menu>
+        <grid-layout :layout="layout"
+                         :col-num="1280"
+                         :row-height="1"
+                         :vertical-compact="true"
+                         :margin="[0, 0]"
+                         :use-css-transforms="true" style="width:100%;height:100%;">
+                <!-- 左侧菜单控制内容 -->          
+                <grid-item :x="layout[0].x"
+                           :y="layout[0].y"
+                           :w="layout[0].w"
+                           :h="layout[0].h"
+                           :is-resizable="true"
+                           :is-draggable="false"
+                           :i="layout[0].i" @resize="resizeEvent" style="height:100%;" v-show="tabs['0']">
+                      <data-source @childEvent = "listenChild"></data-source>
+                </grid-item>  
+                <!-- 中间内容 -->
+                <grid-item :x="layout[1].x"
+                           :y="layout[1].y"
+                           :w="layout[1].w"
+                           :h="layout[1].h"
+                           :i="layout[1].i"
+                           :is-resizable="true"
+                           :is-draggable="false" @resize="resizeEvent" style="height:100%;">
+                    <table-info></table-info>       
+                </grid-item>
+                <!-- 右侧菜单控制内容 -->
+                <grid-item :x="layout[2].x"
+                           :y="layout[2].y"
+                           :w="layout[2].w"
+                           :h="layout[2].h"
+                           :is-draggable="false"
+                           :i="layout[2].i" style="height:100%;">
+                    <span class="text">属性</span>
+                </grid-item>
+            </grid-layout>
+            <!-- 右侧菜单栏 -->
+            <el-menu :collapse="true">
+              <el-menu-item index="2">
+                <i class="el-icon-menu"></i>
+                <span slot="title">导航二</span>
+              </el-menu-item>
+              <el-menu-item index="3">
+                <i class="el-icon-document"></i>
+                <span slot="title">导航三</span>
+              </el-menu-item>
+              <el-menu-item index="4">
+                <i class="el-icon-setting"></i>
+                <span slot="title">导航四</span>
+              </el-menu-item>
+            </el-menu>
         </el-container>
       </el-container>
     </el-container>
@@ -101,87 +94,78 @@
 </template>
 
 <script>
+import {GridLayout, GridItem} from 'vue-grid-layout'
+import DataSource from '../components/leftBar/DataSource'
+import TableInfo from '../components/mainContent/TableInfo'
+
+const containerLayout = [
+	    {'x': 0, 'y': 0, 'w': 200, 'h': 500, 'i': '0'},
+      {'x': 200, 'y': 0, 'w': 960, 'h': 500, 'i': '1'},
+	    {'x': 1160, 'y': 0, 'w': 120, 'h': 500, 'i': '2'}
+	]
 export default {
-  name: 'home',
+  name: 'Home',
+  components: {
+    GridLayout: GridLayout,
+    GridItem: GridItem,
+    DataSource: DataSource,
+    TableInfo: TableInfo
+  },
   mounted () {
-    this.contentHeight = document.body.clientHeight - 60
-    this.getAllDataSources()
+    this.contentHeight = document.body.clientHeight - 60 - 20
+    this.contentWidth = document.body.clientWidth
   },
   watch: {
   },
   methods: {
+    listenChild (data) {
+        console.log(data)
+    },  
     handleSelect (key, keyPath) {
         console.log(key, keyPath)
     },
-    getAllDataSources () {
-      this.$http.get(CONSTANT.API_URL.DATA_SOURCE.GET_SIMPLE_ALL)
-          .then((response) => {
-              let res = response.data
-              if (res && res.code === CONSTANT.ResponseCode.SUCCESS) {
-                  this.dataSourceList = res.data
-              }
-          })
+    testScroll () {
+      if (this.testHeight) this.testHeight = false
+      else this.testHeight = true
     },
-    getDataSourceTree (dataSourceId) {
-      this.$http.get(CONSTANT.API_URL.DATA_SOURCE.GET_DATA_SOURCE_TREE, {
-        params: {
-          id: dataSourceId
+    resizeEvent (i, newH, newW) {
+        let nextCtIndex = 1 + parseInt(i)
+        let nextContainer = containerLayout.filter(t => t.i === (nextCtIndex + ''))[0]
+        let preContainer = containerLayout[parseInt(i)]
+        nextContainer.x = containerLayout[parseInt(i)].x + newW
+        nextContainer.w = nextContainer.w + preContainer.w - newW
+    },
+    toggleTabs (tabIndex) {
+        this.tabs[tabIndex] = !this.tabs[tabIndex]
+        // 后面的往前移动
+        let nextCtIndex = 1 + parseInt(tabIndex)
+        let nextContainer = containerLayout.filter(t => t.i === (nextCtIndex + ''))[0]
+        let preContainer = containerLayout[parseInt(tabIndex)]
+        if (this.tabs[tabIndex]) {
+           nextContainer.x = nextContainer.x + preContainer.w
+           nextContainer.w = nextContainer.w - preContainer.w
+        } else {
+           nextContainer.x = nextContainer.x - preContainer.w
+           nextContainer.w = nextContainer.w + preContainer.w
         }
-      }).then((response) => {
-              let res = response.data
-              if (res && res.code !== CONSTANT.ResponseCode.SUCCESS) {
-                  this.$Message.error(res.msg || '操作失败')
-                  this.dsTreeConfig.data = []
-                  return
-              }
-              this.dsTreeConfig.data = [res.data]
-              this.$nextTick(() => {
-                  // tree dom更新后设置
-                  if (res.data) this.$refs.dsTree.setCurrentKey(res.data.uid)
-              })
-          })
-    },
-    getTableFields (table) {
-      this.$http.get(CONSTANT.API_URL.TABLE.GET_TABLE_FIELDS, {
-        params: {
-          schema: table.schema,
-          table: table.name
-        }
-      }).then((response) => {
-          let res = response.data
-          if (res && res.code === CONSTANT.ResponseCode.SUCCESS) {
-              this.fieldTableConfig.data = res.data
-          }
-      })
-    },
-    handleClick () {
-      alert(1)
-    },
-    handleNodeClick (data) {
-       if (data.type === 2) {
-         this.getTableFields({schema: 'rbac', name: data.name})
-       }
-    },
-    rowDoubleClick (row, event) {
-       console.log(row)
-    },
-    getGeneratorConfig (row, expandedRows) {
-      console.log(row)
     }
   },
   data () {
     return {
+        testHeight: false,
         activeIndex: '1',
         activeIndex2: '1',
         contentHeight: 400,
-        dsTreeConfig: {
-            data: [],
-            currentKey: '3'
-        },
-        fieldTableConfig: {
-          data: []
-        },
-        dataSourceList: []
+        layout: containerLayout,
+        draggable: true,
+        resizable: true,
+        index: 0,
+        contentWidth: 500,
+        tabs: {
+            '0': true,
+            '1': true,
+            '2': true
+        }
     }
   }
 }
@@ -189,46 +173,12 @@ export default {
 
 <style lang="less" type="text/less">
 
-.el-header, .el-footer {
-    background-color: #B3C0D1;
-    color: #333;
-    text-align: center;
-    line-height: 60px;
-  }
-  
-  .el-aside {
-    background-color: #D3DCE6;
-    color: #333;
-    text-align: center;
-    line-height: 200px;
-  }
-  
-  .el-main {
-    background-color: #E9EEF3;
-    color: #333;
-    text-align: center;
-    // line-height: 400px;
-    height:100%;
-  }
-  
-  body > .el-container {
-    margin-bottom: 40px;
-  }
-  
-  .el-container:nth-child(5) .el-aside,
-  .el-container:nth-child(6) .el-aside {
-    line-height: 260px;
-  }
-  
-  .el-container:nth-child(7) .el-aside {
-    line-height: 320px;
-  }
-  .custom-tree-node {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 14px;
-    padding-right: 8px;
-  }
+.vue-grid-item:not(.vue-grid-placeholder) {
+    border: 1px solid #DCDFE6;
+}
+
+.vue-grid-item .add {
+    cursor: pointer;
+}
+
 </style>

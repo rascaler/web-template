@@ -27,7 +27,6 @@
                          :is-draggable="draggable"
                          :is-resizable="resizable"
                          :vertical-compact="true"
-                         :is-mirrored="true"
                          :use-css-transforms="true" style="width:100%">
                 <grid-item :x="layout[0].x"
                            :y="layout[0].y"

@@ -13,7 +13,7 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       '/readygo': {
-        target: 'http://192.168.1.51:9090/readygo',
+        target: 'http://192.168.199.113:9090/readygo',
         changeOrigin: true,
         pathRewrite: {
           '^/readygo': ''
